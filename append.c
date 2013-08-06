@@ -30,7 +30,7 @@ void makelist(struct node** head)
 	makenode(head,6);
 	makenode(head,4);
 	makenode(head,0);
-        print_list(*head);
+//        print_list(*head);
 }
 
 int append(struct node** a, struct node** b)
@@ -38,11 +38,13 @@ int append(struct node** a, struct node** b)
 	struct node* current = *a;
 	if (*a == 0){
 		*a = *b;
+		*b = 0;
 		return 0;
 	}
 	while(current->next != 0)
 		current = current->next;
 	current->next = *b;
+	*b = 0;
 	return 0;
 }	
 main(){
@@ -52,10 +54,13 @@ main(){
 	makelist(&b);
 	append(&a,&b);
         print_list(a);
+
         makelist(&a);
+	makelist(&b);
 	append(&a,&b);
-	print_list(b);
-//	b = 0;
-//        append(&a,&b);
-//        print_list(a);
+	print_list(a);
+
+	b = 0;
+        append(&a,&b);
+        print_list(a);
 }
